@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
 
     int32_t value;
 
-    while (scanf("%" SCNd32, &value) == 1) {
+    while (scanf("%d", &value) == 1) {
         if (send_all(sock, &value, sizeof(value)) < 0) {
             close(sock);
             return 0;
@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-        printf("%" PRId32 "\n", answer);
+        printf("%d\n", answer);
         fflush(stdout);
     }
 
