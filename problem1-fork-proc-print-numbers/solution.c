@@ -17,29 +17,28 @@ int main(int argc, char *argv[]) {
     }
 
     int n = atoi(argv[1]);
-    int i = 1;
+    for (int i = 1; i <= n; ++i) {
+        if (i == n) {
+            printf("%d\n", i);
+            fflush(stdout);
+            return 0;
+        }
 
-    while (i < n) {
+        printf("%d ", i);
+        fflush(stdout);
+
         pid_t pid = fork();
 
         if (pid < 0) {
             return 1;
         }
 
-        if (pid == 0) {
-            i++;
-        } else {
+        if (pid > 0) {
             waitpid(pid, NULL, 0);
+            return 0;
+        }
+    }
 
-            if (i == 1) {
-                printf("%d", i);
-            } else {
-                printf(" %d", i);
-            }
-
-            if (i == 1) {
-                printf("\n");
-            }
 
             return 0;
         }
